@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+76f9d274d32a914cfc7ab2ce618edb49 .qt/rcc/qrc_app_images.cpp
+87364fcf2849acf474511eb8ef407e6a CMakeFiles/MemoryGame_autogen
+0ebeaa031a2c76de9f3620935f5c3f1a MemoryGame_autogen/timestamp

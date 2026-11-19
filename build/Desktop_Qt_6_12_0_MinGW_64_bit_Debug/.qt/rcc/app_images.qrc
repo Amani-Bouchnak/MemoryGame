@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="images/1.png">C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/images/1.png</file>
+    <file alias="images/2.png">C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/images/2.png</file>
+    <file alias="images/3.png">C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/images/3.png</file>
+    <file alias="images/4.png">C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/images/4.png</file>
+    <file alias="images/5.png">C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/images/5.png</file>
+    <file alias="images/6.png">C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/images/6.png</file>
+    <file alias="images/7.png">C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/images/7.png</file>
+    <file alias="images/8.png">C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/images/8.png</file>
+    <file alias="images/9.png">C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/images/9.png</file>
+    <file alias="images/10.png">C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/images/10.png</file>
+  </qresource>
+</RCC>
+
