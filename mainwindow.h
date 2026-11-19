@@ -74,6 +74,11 @@ private:
     bool conditionsAcceptees;
     QPushButton *btnConditionsLink;
     void afficherConditionsUtilisation(bool lancerApresAcceptation = false);
+
+    //Theme : Mode Sombre (true)/ Mode clair (false)
+    bool modeSombre;
+    QPushButton *btnThemeToggle;
+
 };
 
 #endif // MAINWINDOW_H

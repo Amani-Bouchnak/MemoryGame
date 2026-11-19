@@ -11,12 +11,19 @@
 #include <QSettings>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), jeu(8), gestionnaireScores("scores.txt"), verrouClic(false), secondes(0),conditionsAcceptees(false)
+    : QMainWindow(parent),
+    jeu(8),
+    gestionnaireScores("scores.txt"),
+    verrouClic(false),
+    secondes(0),
+    conditionsAcceptees(false),
+    modeSombre(true)
 {
+
     QSettings settings("MemoryGame", "MemoryGame");
-    settings.setValue("conditionsAcceptees", false);
-    conditionsAcceptees = false;//Ces 3 lignes sont pour tester les conditions d'utilisation
-    //quand tu les met enlève la ligne 37
+    modeSombre = settings.value("modeSombre", true).toBool();
+    conditionsAcceptees = settings.value("conditionsAcceptees", false).toBool();
+    //conditionsAcceptees = false;
 
     setWindowTitle("Memory Game - POO C++ / Qt");
     resize(1000, 800);
@@ -34,9 +41,6 @@ MainWindow::MainWindow(QWidget *parent)
     chronoTimer = new QTimer(this);
     connect(chronoTimer, &QTimer::timeout, this, &MainWindow::updateChrono);
 
-    //QSettings settings("MemoryGame", "MemoryGame");//ligne 37
-    conditionsAcceptees = settings.value("conditionsAcceptees", false).toBool();
-
     applyStylesheet();
 }
 
@@ -48,12 +52,22 @@ void MainWindow::setupPageAccueil()
     QVBoxLayout *mainLayout = new QVBoxLayout(pageAccueil);
     mainLayout->setContentsMargins(25, 20, 25, 20);
 
-    // Barre supérieure pour l'accueil (bouton reset en haut à droite)
+    // Barre supérieure pour l'accueil (bouton thème + bouton reset en haut à droite)
     QHBoxLayout *topBarAccueil = new QHBoxLayout();
     btnResetScores = new QPushButton("Réinitialiser les scores", pageAccueil);
     btnResetScores->setObjectName("btnAction");
     btnResetScores->setCursor(Qt::PointingHandCursor);
+
+    btnThemeToggle = new QPushButton(pageAccueil);
+    btnThemeToggle->setObjectName("btnThemeToggle");
+    btnThemeToggle->setCursor(Qt::PointingHandCursor);
+    btnThemeToggle->setFocusPolicy(Qt::NoFocus);
+    btnThemeToggle->setFixedSize(40, 40);
+    btnThemeToggle->setToolTip("Changer de thème (Sombre / Clair)");
+
     topBarAccueil->addStretch();
+    topBarAccueil->addWidget(btnThemeToggle);
+    topBarAccueil->addSpacing(10);
     topBarAccueil->addWidget(btnResetScores);
 
     mainLayout->addLayout(topBarAccueil);
@@ -97,6 +111,12 @@ void MainWindow::setupPageAccueil()
         mettreAJourLabelRecordAccueil();
         QMessageBox::information(this, "Réinitialisation", "Tous les scores ont été effacés !");
     });
+    connect(btnThemeToggle, &QPushButton::clicked, this, [this]() {
+        modeSombre = !modeSombre;
+        QSettings settings("MemoryGame", "MemoryGame");
+        settings.setValue("modeSombre", modeSombre);
+        applyStylesheet();
+    });
 
     mainLayout->addWidget(titre, 0, Qt::AlignCenter);
     mainLayout->addSpacing(10);
@@ -110,22 +130,10 @@ void MainWindow::setupPageAccueil()
     mainLayout->addStretch();
 
     btnConditionsLink = new QPushButton("Conditions d'utilisation", pageAccueil);
+    btnConditionsLink->setObjectName("btnConditionsLink");
     btnConditionsLink->setCursor(Qt::PointingHandCursor);
     btnConditionsLink->setFlat(true);
     btnConditionsLink->setFocusPolicy(Qt::NoFocus);
-    btnConditionsLink->setStyleSheet(
-        "QPushButton {"
-        "  background: transparent;"
-        "  border: none;"
-        "  outline: none;"
-        "  color: #94A3B8;"
-        "  text-decoration: underline;"
-        "  font-size: 13px;"
-        "}"
-        "QPushButton:hover {"
-        "  color: #38BDF8;"
-        "}"
-        );
 
     connect(btnConditionsLink, &QPushButton::clicked, this, [this]() {
         afficherConditionsUtilisation(false);
@@ -388,97 +396,239 @@ void MainWindow::updateChrono()
 
 void MainWindow::applyStylesheet()
 {
-    setStyleSheet(R"(
-        QMainWindow, QWidget {
-            background-color: #161822;
-            color: #F1F5F9;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
-        #titreAccueil {
-            font-size: 44px;
-            font-weight: bold;
-            color: #38BDF8;
-            letter-spacing: 3px;
-        }
-        #sousTitreAccueil {
-            font-size: 18px;
-            color: #94A3B8;
-        }
-        #labelRecordAccueil {
-            font-size: 16px;
-            color: #38BDF8;
-            font-weight: bold;
-        }
-        #comboDim {
-            background-color: #1E293B;
-            border: 2px solid #334155;
-            border-radius: 10px;
-            padding: 12px 16px;
-            font-size: 16px;
-            color: #F8FAFC;
-        }
-        #comboDim::drop-down {
-            border: none;
-        }
-        #btnJouer {
-            background-color: #0284C7;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 14px;
-            letter-spacing: 2px;
-        }
-        #btnJouer:hover {
-            background-color: #0369A1;
-        }
-        #btnAction {
-            background-color: #1E293B;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            padding: 8px 16px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        #btnAction:hover {
-            background-color: #334155;
-        }
-        #statLabel {
-            font-size: 16px;
-            font-weight: bold;
-            color: #E2E8F0;
-            background-color: #1E293B;
-            padding: 8px 16px;
-            border-radius: 8px;
-        }
-        QPushButton[etat="cachee"] {
-            background-color: #1E293B;
-            border: 2px solid #38BDF8;
-            border-radius: 14px;
-            font-size: 32px;
-            font-weight: bold;
-            color: #38BDF8;
-        }
-        QPushButton[etat="cachee"]:hover {
-            background-color: #273549;
-            border-color: #7DD3FC;
-        }
-        QPushButton[etat="visible"] {
-            background-color: #F8FAFC;
-            border: 3px solid #F59E0B;
-            border-radius: 14px;
-            font-size: 32px;
-            font-weight: bold;
-            color: #0F172A;
-        }
-        QPushButton[etat="trouvee"] {
-            background-color: #DCFCE7;
-            border: 3px solid #22C55E;
-            border-radius: 14px;
-            font-size: 32px;
-            font-weight: bold;
-            color: #14532D;
-        }
-    )");
+    if (btnThemeToggle) {
+        btnThemeToggle->setText(modeSombre ? "☀" : "🌙");
+    }
+
+    if (modeSombre) {
+        setStyleSheet(R"(
+            QMainWindow, QWidget {
+                background-color: #161822;
+                color: #F1F5F9;
+                font-family: 'Segoe UI', Arial, sans-serif;
+            }
+            #titreAccueil {
+                font-size: 44px;
+                font-weight: bold;
+                color: #38BDF8;
+                letter-spacing: 3px;
+            }
+            #sousTitreAccueil {
+                font-size: 18px;
+                color: #94A3B8;
+            }
+            #labelRecordAccueil {
+                font-size: 16px;
+                color: #38BDF8;
+                font-weight: bold;
+            }
+            #comboDim {
+                background-color: #1E293B;
+                border: 2px solid #334155;
+                border-radius: 10px;
+                padding: 12px 16px;
+                font-size: 16px;
+                color: #F8FAFC;
+            }
+            #comboDim::drop-down {
+                border: none;
+            }
+            #btnJouer {
+                background-color: #0284C7;
+                color: white;
+                font-size: 20px;
+                font-weight: bold;
+                border-radius: 14px;
+                letter-spacing: 2px;
+            }
+            #btnJouer:hover {
+                background-color: #0369A1;
+            }
+            #btnAction {
+                background-color: #1E293B;
+                border: 1px solid #334155;
+                border-radius: 8px;
+                padding: 8px 16px;
+                font-size: 14px;
+                font-weight: bold;
+            }
+            #btnAction:hover {
+                background-color: #334155;
+            }
+            #btnThemeToggle {
+                background-color: #1E293B;
+                color: #FBBF24;
+                border: 1px solid #334155;
+                border-radius: 20px;
+                font-size: 18px;
+            }
+            #btnThemeToggle:hover {
+                background-color: #334155;
+            }
+            #btnConditionsLink {
+                background: transparent;
+                border: none;
+                outline: none;
+                color: #94A3B8;
+                text-decoration: underline;
+                font-size: 13px;
+            }
+            #btnConditionsLink:hover {
+                color: #38BDF8;
+            }
+            #statLabel {
+                font-size: 16px;
+                font-weight: bold;
+                color: #E2E8F0;
+                background-color: #1E293B;
+                padding: 8px 16px;
+                border-radius: 8px;
+            }
+            QPushButton[etat="cachee"] {
+                background-color: #1E293B;
+                border: 2px solid #38BDF8;
+                border-radius: 14px;
+                font-size: 32px;
+                font-weight: bold;
+                color: #38BDF8;
+            }
+            QPushButton[etat="cachee"]:hover {
+                background-color: #273549;
+                border-color: #7DD3FC;
+            }
+            QPushButton[etat="visible"] {
+                background-color: #F8FAFC;
+                border: 3px solid #F59E0B;
+                border-radius: 14px;
+                font-size: 32px;
+                font-weight: bold;
+                color: #0F172A;
+            }
+            QPushButton[etat="trouvee"] {
+                background-color: #DCFCE7;
+                border: 3px solid #22C55E;
+                border-radius: 14px;
+                font-size: 32px;
+                font-weight: bold;
+                color: #14532D;
+            }
+        )");
+    } else {
+        setStyleSheet(R"(
+            QMainWindow, QWidget {
+                background-color: #F1F5F9;
+                color: #0F172A;
+                font-family: 'Segoe UI', Arial, sans-serif;
+            }
+            #titreAccueil {
+                font-size: 44px;
+                font-weight: bold;
+                color: #0284C7;
+                letter-spacing: 3px;
+            }
+            #sousTitreAccueil {
+                font-size: 18px;
+                color: #475569;
+            }
+            #labelRecordAccueil {
+                font-size: 16px;
+                color: #0369A1;
+                font-weight: bold;
+            }
+            #comboDim {
+                background-color: #FFFFFF;
+                border: 2px solid #CBD5E1;
+                border-radius: 10px;
+                padding: 12px 16px;
+                font-size: 16px;
+                color: #0F172A;
+            }
+            #comboDim::drop-down {
+                border: none;
+            }
+            #btnJouer {
+                background-color: #0284C7;
+                color: white;
+                font-size: 20px;
+                font-weight: bold;
+                border-radius: 14px;
+                letter-spacing: 2px;
+            }
+            #btnJouer:hover {
+                background-color: #0369A1;
+            }
+            #btnAction {
+                background-color: #FFFFFF;
+                color: #0F172A;
+                border: 1px solid #CBD5E1;
+                border-radius: 8px;
+                padding: 8px 16px;
+                font-size: 14px;
+                font-weight: bold;
+            }
+            #btnAction:hover {
+                background-color: #E2E8F0;
+            }
+            #btnThemeToggle {
+                background-color: #FFFFFF;
+                color: #0F172A;
+                border: 1px solid #CBD5E1;
+                border-radius: 20px;
+                font-size: 18px;
+            }
+            #btnThemeToggle:hover {
+                background-color: #E2E8F0;
+            }
+            #btnConditionsLink {
+                background: transparent;
+                border: none;
+                outline: none;
+                color: #475569;
+                text-decoration: underline;
+                font-size: 13px;
+            }
+            #btnConditionsLink:hover {
+                color: #0284C7;
+            }
+            #statLabel {
+                font-size: 16px;
+                font-weight: bold;
+                color: #0F172A;
+                background-color: #FFFFFF;
+                border: 1px solid #CBD5E1;
+                padding: 8px 16px;
+                border-radius: 8px;
+            }
+            QPushButton[etat="cachee"] {
+                background-color: #E0F2FE;
+                border: 2px solid #0284C7;
+                border-radius: 14px;
+                font-size: 32px;
+                font-weight: bold;
+                color: #0369A1;
+            }
+            QPushButton[etat="cachee"]:hover {
+                background-color: #BAE6FD;
+                border-color: #0284C7;
+            }
+            QPushButton[etat="visible"] {
+                background-color: #FEF3C7;
+                border: 3px solid #D97706;
+                border-radius: 14px;
+                font-size: 32px;
+                font-weight: bold;
+                color: #0F172A;
+            }
+            QPushButton[etat="trouvee"] {
+                background-color: #DCFCE7;
+                border: 3px solid #16A34A;
+                border-radius: 14px;
+                font-size: 32px;
+                font-weight: bold;
+                color: #14532D;
+            }
+        )");
+    }
 }
 void MainWindow::afficherConditionsUtilisation(bool lancerApresAcceptation)
 {
@@ -492,7 +642,9 @@ void MainWindow::afficherConditionsUtilisation(bool lancerApresAcceptation)
     layout->setSpacing(14);
 
     QLabel *titre = new QLabel("Conditions d'utilisation", &dialog);
-    titre->setStyleSheet("font-size: 20px; font-weight: bold; color: #38BDF8;");
+    titre->setStyleSheet(modeSombre
+                             ? "font-size: 20px; font-weight: bold; color: #38BDF8;"
+                             : "font-size: 20px; font-weight: bold; color: #0284C7;");
 
     QTextBrowser *texte = new QTextBrowser(&dialog);
     texte->setOpenExternalLinks(false);
@@ -503,10 +655,11 @@ void MainWindow::afficherConditionsUtilisation(bool lancerApresAcceptation)
         "sont enregistrés localement dans <code>scores.txt</code>.</p>"
         "<p>Aucune donnée personnelle n'est collectée ni envoyée vers l'extérieur.</p>"
         );
-    texte->setStyleSheet(
-        "background-color: #1E293B; color: #F1F5F9; border: 1px solid #334155; "
-        "border-radius: 8px; padding: 10px; font-size: 14px;"
-        );
+    texte->setStyleSheet(modeSombre
+                             ? "background-color: #1E293B; color: #F1F5F9; border: 1px solid #334155; "
+                               "border-radius: 8px; padding: 10px; font-size: 14px;"
+                             : "background-color: #FFFFFF; color: #0F172A; border: 1px solid #CBD5E1; "
+                               "border-radius: 8px; padding: 10px; font-size: 14px;");
 
     QHBoxLayout *btnLayout = new QHBoxLayout();
     btnLayout->addStretch();
@@ -526,10 +679,11 @@ void MainWindow::afficherConditionsUtilisation(bool lancerApresAcceptation)
     } else {
         QPushButton *btnRefuser = new QPushButton("Refuser et quitter", &dialog);
         btnRefuser->setCursor(Qt::PointingHandCursor);
-        btnRefuser->setStyleSheet(
-            "background-color: #F8FAFC; color: #0F172A; border: 1px solid #CBD5E1; "
-            "border-radius: 8px; padding: 10px 16px; font-weight: bold;"
-            );
+        btnRefuser->setStyleSheet(modeSombre
+                                      ? "background-color: #1E293B; color: #F1F5F9; border: 1px solid #475569; "
+                                        "border-radius: 8px; padding: 10px 16px; font-weight: bold;"
+                                      : "background-color: #E2E8F0; color: #0F172A; border: 1px solid #CBD5E1; "
+                                        "border-radius: 8px; padding: 10px 16px; font-weight: bold;");
 
         QPushButton *btnAccepter = new QPushButton("Accepter et continuer", &dialog);
         btnAccepter->setCursor(Qt::PointingHandCursor);
