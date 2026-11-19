@@ -477,4 +477,24 @@ CMakeFiles/MemoryGame.dir/mainwindow.cpp.obj: \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fs_dir.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fs_ops.h \
  C:/Qt/6.12.0/mingw_64/include/QtCore/QEasingCurve \
- C:/Qt/6.12.0/mingw_64/include/QtWidgets/QStyle
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/QStyle \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/QDialog \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/QTextBrowser \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/qtextbrowser.h \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/qtextedit.h \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+ C:/Qt/6.12.0/mingw_64/include/QtGui/qtextoption.h \
+ C:/Qt/6.12.0/mingw_64/include/QtGui/qtextcursor.h \
+ C:/Qt/6.12.0/mingw_64/include/QtGui/qtextformat.h \
+ C:/Qt/6.12.0/mingw_64/include/QtGui/qpen.h \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/QApplication \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/qapplication.h \
+ C:/Qt/6.12.0/mingw_64/include/QtCore/qcoreapplication.h \
+ C:/Qt/6.12.0/mingw_64/include/QtCore/qcoreevent.h \
+ C:/Qt/6.12.0/mingw_64/include/QtCore/qnativeinterface.h \
+ C:/Qt/6.12.0/mingw_64/include/QtCore/qcoreapplication_platform.h \
+ C:/Qt/6.12.0/mingw_64/include/QtGui/qguiapplication.h \
+ C:/Qt/6.12.0/mingw_64/include/QtGui/qinputmethod.h \
+ C:/Qt/6.12.0/mingw_64/include/QtGui/qguiapplication_platform.h \
+ C:/Qt/6.12.0/mingw_64/include/QtCore/QSettings \
+ C:/Qt/6.12.0/mingw_64/include/QtCore/qsettings.h

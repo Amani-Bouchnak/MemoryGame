@@ -86,13 +86,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 72,
+				"line" : 73,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 58,
+				"line" : 59,
 				"parent" : 0
 			},
 			{
@@ -288,7 +288,7 @@
 			{
 				"command" : 15,
 				"file" : 1,
-				"line" : 32,
+				"line" : 33,
 				"parent" : 0
 			},
 			{
@@ -318,7 +318,7 @@
 			{
 				"command" : 18,
 				"file" : 1,
-				"line" : 79,
+				"line" : 80,
 				"parent" : 0
 			},
 			{
@@ -469,18 +469,19 @@
 				6,
 				8,
 				10,
-				11
+				12,
+				13
 			]
 		}
 	],
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 0,
-			"id" : "MemoryGame_autogen::@6890427a1f51a3e7e1df"
+			"id" : "MemoryGame_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "MemoryGame_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"backtrace" : 0,
+			"id" : "MemoryGame_autogen::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "MemoryGame::@6890427a1f51a3e7e1df",
@@ -595,7 +596,8 @@
 				2,
 				6,
 				8,
-				10
+				10,
+				12
 			]
 		},
 		{
@@ -606,7 +608,8 @@
 				5,
 				7,
 				9,
-				24
+				11,
+				26
 			]
 		},
 		{
@@ -620,16 +623,14 @@
 			"name" : "Source Files\\Generated",
 			"sourceIndexes" : 
 			[
-				11,
-				12
+				13,
+				14
 			]
 		},
 		{
 			"name" : "Resources",
 			"sourceIndexes" : 
 			[
-				13,
-				14,
 				15,
 				16,
 				17,
@@ -637,23 +638,25 @@
 				19,
 				20,
 				21,
-				22
+				22,
+				23,
+				24
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				23,
-				25
+				25,
+				27
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				26,
-				27
+				28,
+				29
 			]
 		}
 	],
@@ -719,6 +722,17 @@
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "jeu.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "score.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "score.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

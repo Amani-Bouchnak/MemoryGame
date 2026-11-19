@@ -5,10 +5,19 @@
 #include <QFile>
 #include <QEasingCurve>
 #include <QStyle>
+#include <QDialog>
+#include <QTextBrowser>
+#include <QApplication>
+#include <QSettings>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), jeu(8), gestionnaireScores("scores.txt"), verrouClic(false), secondes(0)
+    : QMainWindow(parent), jeu(8), gestionnaireScores("scores.txt"), verrouClic(false), secondes(0),conditionsAcceptees(false)
 {
+    QSettings settings("MemoryGame", "MemoryGame");
+    settings.setValue("conditionsAcceptees", false);
+    conditionsAcceptees = false;//Ces 3 lignes sont pour tester les conditions d'utilisation
+    //quand tu les met enlève la ligne 37
+
     setWindowTitle("Memory Game - POO C++ / Qt");
     resize(1000, 800);
     showMaximized();
@@ -24,6 +33,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     chronoTimer = new QTimer(this);
     connect(chronoTimer, &QTimer::timeout, this, &MainWindow::updateChrono);
+
+    //QSettings settings("MemoryGame", "MemoryGame");//ligne 37
+    conditionsAcceptees = settings.value("conditionsAcceptees", false).toBool();
 
     applyStylesheet();
 }
@@ -96,6 +108,29 @@ void MainWindow::setupPageAccueil()
     mainLayout->addSpacing(25);
     mainLayout->addWidget(btnJouer, 0, Qt::AlignCenter);
     mainLayout->addStretch();
+
+    btnConditionsLink = new QPushButton("Conditions d'utilisation", pageAccueil);
+    btnConditionsLink->setCursor(Qt::PointingHandCursor);
+    btnConditionsLink->setFlat(true);
+    btnConditionsLink->setFocusPolicy(Qt::NoFocus);
+    btnConditionsLink->setStyleSheet(
+        "QPushButton {"
+        "  background: transparent;"
+        "  border: none;"
+        "  outline: none;"
+        "  color: #94A3B8;"
+        "  text-decoration: underline;"
+        "  font-size: 13px;"
+        "}"
+        "QPushButton:hover {"
+        "  color: #38BDF8;"
+        "}"
+        );
+
+    connect(btnConditionsLink, &QPushButton::clicked, this, [this]() {
+        afficherConditionsUtilisation(false);
+    });
+    mainLayout->addWidget(btnConditionsLink, 0, Qt::AlignCenter);
 }
 
 void MainWindow::setupPageJeu()
@@ -171,6 +206,10 @@ void MainWindow::mettreAJourLabelRecordAccueil()
 
 void MainWindow::lancerPartie()
 {
+    if (!conditionsAcceptees) {
+        afficherConditionsUtilisation(true);
+        return;
+    }
     int dim = comboDimension->currentData().toInt();
     jeu.demarrerNouvellePartie(dim);
 
@@ -440,4 +479,94 @@ void MainWindow::applyStylesheet()
             color: #14532D;
         }
     )");
+}
+void MainWindow::afficherConditionsUtilisation(bool lancerApresAcceptation)
+{
+    QDialog dialog(this);
+    dialog.setWindowTitle("Conditions d'utilisation");
+    dialog.setModal(true);
+    dialog.resize(520, 360);
+
+    QVBoxLayout *layout = new QVBoxLayout(&dialog);
+    layout->setContentsMargins(20, 20, 20, 20);
+    layout->setSpacing(14);
+
+    QLabel *titre = new QLabel("Conditions d'utilisation", &dialog);
+    titre->setStyleSheet("font-size: 20px; font-weight: bold; color: #38BDF8;");
+
+    QTextBrowser *texte = new QTextBrowser(&dialog);
+    texte->setOpenExternalLinks(false);
+    texte->setHtml(
+        "<p>Bienvenue dans <b>Memory Game</b>.</p>"
+        "<p>En acceptant ces conditions d'utilisation, vous acceptez de jouer normalement et "
+        "vous êtes informé que vos meilleurs scores (nombre de coups et temps par taille de grille) "
+        "sont enregistrés localement dans <code>scores.txt</code>.</p>"
+        "<p>Aucune donnée personnelle n'est collectée ni envoyée vers l'extérieur.</p>"
+        );
+    texte->setStyleSheet(
+        "background-color: #1E293B; color: #F1F5F9; border: 1px solid #334155; "
+        "border-radius: 8px; padding: 10px; font-size: 14px;"
+        );
+
+    QHBoxLayout *btnLayout = new QHBoxLayout();
+    btnLayout->addStretch();
+
+    bool accepteMaintenant = false;
+    bool refuseDeQuitter = false;
+
+    if (conditionsAcceptees) {
+        QPushButton *btnFermer = new QPushButton("Fermer", &dialog);
+        btnFermer->setCursor(Qt::PointingHandCursor);
+        btnFermer->setStyleSheet(
+            "background-color: #0284C7; color: white; border: none; "
+            "border-radius: 8px; padding: 10px 18px; font-weight: bold;"
+            );
+        connect(btnFermer, &QPushButton::clicked, &dialog, &QDialog::accept);
+        btnLayout->addWidget(btnFermer);
+    } else {
+        QPushButton *btnRefuser = new QPushButton("Refuser et quitter", &dialog);
+        btnRefuser->setCursor(Qt::PointingHandCursor);
+        btnRefuser->setStyleSheet(
+            "background-color: #F8FAFC; color: #0F172A; border: 1px solid #CBD5E1; "
+            "border-radius: 8px; padding: 10px 16px; font-weight: bold;"
+            );
+
+        QPushButton *btnAccepter = new QPushButton("Accepter et continuer", &dialog);
+        btnAccepter->setCursor(Qt::PointingHandCursor);
+        btnAccepter->setStyleSheet(
+            "background-color: #0284C7; color: white; border: none; "
+            "border-radius: 8px; padding: 10px 18px; font-weight: bold;"
+            );
+
+        connect(btnAccepter, &QPushButton::clicked, &dialog, [&]() {
+            conditionsAcceptees = true;
+            accepteMaintenant = true;
+            QSettings settings("MemoryGame", "MemoryGame");
+            settings.setValue("conditionsAcceptees", true);
+            dialog.accept();
+        });
+
+        connect(btnRefuser, &QPushButton::clicked, &dialog, [&]() {
+            refuseDeQuitter = true;
+            dialog.reject();
+        });
+
+        btnLayout->addWidget(btnRefuser);
+        btnLayout->addWidget(btnAccepter);
+    }
+
+    layout->addWidget(titre);
+    layout->addWidget(texte, 1);
+    layout->addLayout(btnLayout);
+
+    dialog.exec();
+
+    if (refuseDeQuitter) {
+        qApp->quit();
+        return;
+    }
+
+    if (accepteMaintenant && lancerApresAcceptation) {
+        lancerPartie();
+    }
 }

@@ -445,7 +445,7 @@ C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/mainwindow.h
  mdp:C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/score.h
 C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/plateau.h
 C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/main.cpp
+C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/score.h
 C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/mainwindow.cpp
 C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/plateau.cpp
-C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/score.h
 C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/score.cpp

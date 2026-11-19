@@ -69,6 +69,11 @@ private:
     // Chronomètre
     QTimer *chronoTimer;
     int secondes;
+
+    // Condintions d'utilisation
+    bool conditionsAcceptees;
+    QPushButton *btnConditionsLink;
+    void afficherConditionsUtilisation(bool lancerApresAcceptation = false);
 };
 
 #endif // MAINWINDOW_H
