@@ -433,6 +433,19 @@ CMakeFiles/MemoryGame.dir/mainwindow.cpp.obj: \
  C:/Qt/6.12.0/mingw_64/include/QtCore/qeasingcurve.h \
  C:/Qt/6.12.0/mingw_64/include/QtWidgets/QGraphicsOpacityEffect \
  C:/Qt/6.12.0/mingw_64/include/QtWidgets/qgraphicseffect.h \
+ C:/Qt/6.12.0/mingw_64/include/QtWidgets/QGraphicsDropShadowEffect \
+ C:/Qt/6.12.0/mingw_64/include/QtMultimedia/QSoundEffect \
+ C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qsoundeffect.h \
+ C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qaudio.h \
+ C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qtmultimediaglobal.h \
+ C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
+ C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
+ C:/Qt/6.12.0/mingw_64/include/QtMultimedia/QMediaPlayer \
+ C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qmediaplayer.h \
+ C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qtaudio.h \
+ C:/Qt/6.12.0/mingw_64/include/QtMultimedia/QAudioOutput \
+ C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qaudiooutput.h \
+ C:/Qt/6.12.0/mingw_64/include/QtCore/QMap \
  C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\jeu.h \
  C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\plateau.h \
  C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\carte.h \
@@ -497,4 +510,6 @@ CMakeFiles/MemoryGame.dir/mainwindow.cpp.obj: \
  C:/Qt/6.12.0/mingw_64/include/QtGui/qinputmethod.h \
  C:/Qt/6.12.0/mingw_64/include/QtGui/qguiapplication_platform.h \
  C:/Qt/6.12.0/mingw_64/include/QtCore/QSettings \
- C:/Qt/6.12.0/mingw_64/include/QtCore/qsettings.h
+ C:/Qt/6.12.0/mingw_64/include/QtCore/qsettings.h \
+ C:/Qt/6.12.0/mingw_64/include/QtCore/QUrl \
+ C:/Qt/6.12.0/mingw_64/include/QtCore/QDebug

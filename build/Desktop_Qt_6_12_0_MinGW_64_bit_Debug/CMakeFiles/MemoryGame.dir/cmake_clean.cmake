@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   ".qt/rcc/qrc_app_images.cpp"
+  ".qt/rcc/qrc_app_sounds.cpp"
   "CMakeFiles/MemoryGame_autogen.dir/AutogenUsed.txt"
   "CMakeFiles/MemoryGame_autogen.dir/ParseCache.txt"
   "MemoryGame_autogen"
@@ -7,6 +8,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/MemoryGame.dir/MemoryGame_autogen/mocs_compilation.cpp.obj.d"
   "CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.obj"
   "CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.obj.d"
+  "CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.obj"
+  "CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.obj.d"
   "CMakeFiles/MemoryGame.dir/carte.cpp.obj"
   "CMakeFiles/MemoryGame.dir/carte.cpp.obj.d"
   "CMakeFiles/MemoryGame.dir/jeu.cpp.obj"

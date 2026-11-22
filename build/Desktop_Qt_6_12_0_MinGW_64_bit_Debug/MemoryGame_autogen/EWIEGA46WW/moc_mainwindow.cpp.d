@@ -1,5 +1,6 @@
 C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/MemoryGame_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/mainwindow.h \
   C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/MemoryGame_autogen/moc_predefs.h \
+  C:/Qt/6.12.0/mingw_64/include/QtCore/QMap \
   C:/Qt/6.12.0/mingw_64/include/QtCore/QPropertyAnimation \
   C:/Qt/6.12.0/mingw_64/include/QtCore/QTimer \
   C:/Qt/6.12.0/mingw_64/include/QtCore/q17memory.h \
@@ -174,7 +175,19 @@ C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/build/Desktop_Qt_6_12_0_MinGW_6
   C:/Qt/6.12.0/mingw_64/include/QtGui/qvalidator.h \
   C:/Qt/6.12.0/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.12.0/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.12.0/mingw_64/include/QtMultimedia/QAudioOutput \
+  C:/Qt/6.12.0/mingw_64/include/QtMultimedia/QMediaPlayer \
+  C:/Qt/6.12.0/mingw_64/include/QtMultimedia/QSoundEffect \
+  C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qaudio.h \
+  C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qaudiooutput.h \
+  C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qmediaplayer.h \
+  C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qsoundeffect.h \
+  C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qtaudio.h \
+  C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
+  C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
+  C:/Qt/6.12.0/mingw_64/include/QtMultimedia/qtmultimediaglobal.h \
   C:/Qt/6.12.0/mingw_64/include/QtWidgets/QComboBox \
+  C:/Qt/6.12.0/mingw_64/include/QtWidgets/QGraphicsDropShadowEffect \
   C:/Qt/6.12.0/mingw_64/include/QtWidgets/QGraphicsOpacityEffect \
   C:/Qt/6.12.0/mingw_64/include/QtWidgets/QGridLayout \
   C:/Qt/6.12.0/mingw_64/include/QtWidgets/QHBoxLayout \

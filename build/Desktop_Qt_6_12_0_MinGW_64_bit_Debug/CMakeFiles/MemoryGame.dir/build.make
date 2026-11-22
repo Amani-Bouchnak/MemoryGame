@@ -83,10 +83,18 @@ include CMakeFiles/MemoryGame.dir/flags.make
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Running rcc for resource app_images"
 	C:\Qt\6.12.0\mingw_64\bin\rcc.exe --output C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp --name app_images C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/app_images.qrc --no-zstd
 
+.qt/rcc/qrc_app_sounds.cpp: C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/sounds/flip.wav
+.qt/rcc/qrc_app_sounds.cpp: C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/sounds/match.wav
+.qt/rcc/qrc_app_sounds.cpp: C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/sounds/win-record.wav
+.qt/rcc/qrc_app_sounds.cpp: .qt/rcc/app_sounds.qrc
+.qt/rcc/qrc_app_sounds.cpp: C:/Qt/6.12.0/mingw_64/bin/rcc.exe
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Running rcc for resource app_sounds"
+	C:\Qt\6.12.0\mingw_64\bin\rcc.exe --output C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp --name app_sounds C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/app_sounds.qrc --no-zstd
+
 MemoryGame_autogen/timestamp: C:/Qt/6.12.0/mingw_64/bin/moc.exe
 MemoryGame_autogen/timestamp: C:/Qt/6.12.0/mingw_64/bin/uic.exe
 MemoryGame_autogen/timestamp: CMakeFiles/MemoryGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Automatic MOC and UIC for target MemoryGame"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Automatic MOC and UIC for target MemoryGame"
 	C:\Qt\Tools\CMake_64\bin\cmake.exe -E cmake_autogen C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/CMakeFiles/MemoryGame_autogen.dir/AutogenInfo.json Release
 	C:\Qt\Tools\CMake_64\bin\cmake.exe -E touch C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/MemoryGame_autogen/timestamp
 
@@ -94,7 +102,7 @@ CMakeFiles/MemoryGame.dir/MemoryGame_autogen/mocs_compilation.cpp.obj: CMakeFile
 CMakeFiles/MemoryGame.dir/MemoryGame_autogen/mocs_compilation.cpp.obj: CMakeFiles/MemoryGame.dir/includes_CXX.rsp
 CMakeFiles/MemoryGame.dir/MemoryGame_autogen/mocs_compilation.cpp.obj: MemoryGame_autogen/mocs_compilation.cpp
 CMakeFiles/MemoryGame.dir/MemoryGame_autogen/mocs_compilation.cpp.obj: CMakeFiles/MemoryGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/MemoryGame.dir/MemoryGame_autogen/mocs_compilation.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MemoryGame.dir/MemoryGame_autogen/mocs_compilation.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemoryGame.dir/MemoryGame_autogen/mocs_compilation.cpp.obj -MF CMakeFiles\MemoryGame.dir\MemoryGame_autogen\mocs_compilation.cpp.obj.d -o CMakeFiles\MemoryGame.dir\MemoryGame_autogen\mocs_compilation.cpp.obj -c C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\MemoryGame_autogen\mocs_compilation.cpp
 
 CMakeFiles/MemoryGame.dir/MemoryGame_autogen/mocs_compilation.cpp.i: cmake_force
@@ -109,7 +117,7 @@ CMakeFiles/MemoryGame.dir/main.cpp.obj: CMakeFiles/MemoryGame.dir/flags.make
 CMakeFiles/MemoryGame.dir/main.cpp.obj: CMakeFiles/MemoryGame.dir/includes_CXX.rsp
 CMakeFiles/MemoryGame.dir/main.cpp.obj: C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/main.cpp
 CMakeFiles/MemoryGame.dir/main.cpp.obj: CMakeFiles/MemoryGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/MemoryGame.dir/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MemoryGame.dir/main.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemoryGame.dir/main.cpp.obj -MF CMakeFiles\MemoryGame.dir\main.cpp.obj.d -o CMakeFiles\MemoryGame.dir\main.cpp.obj -c C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\main.cpp
 
 CMakeFiles/MemoryGame.dir/main.cpp.i: cmake_force
@@ -124,7 +132,7 @@ CMakeFiles/MemoryGame.dir/mainwindow.cpp.obj: CMakeFiles/MemoryGame.dir/flags.ma
 CMakeFiles/MemoryGame.dir/mainwindow.cpp.obj: CMakeFiles/MemoryGame.dir/includes_CXX.rsp
 CMakeFiles/MemoryGame.dir/mainwindow.cpp.obj: C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/mainwindow.cpp
 CMakeFiles/MemoryGame.dir/mainwindow.cpp.obj: CMakeFiles/MemoryGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/MemoryGame.dir/mainwindow.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/MemoryGame.dir/mainwindow.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemoryGame.dir/mainwindow.cpp.obj -MF CMakeFiles\MemoryGame.dir\mainwindow.cpp.obj.d -o CMakeFiles\MemoryGame.dir\mainwindow.cpp.obj -c C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\mainwindow.cpp
 
 CMakeFiles/MemoryGame.dir/mainwindow.cpp.i: cmake_force
@@ -139,7 +147,7 @@ CMakeFiles/MemoryGame.dir/carte.cpp.obj: CMakeFiles/MemoryGame.dir/flags.make
 CMakeFiles/MemoryGame.dir/carte.cpp.obj: CMakeFiles/MemoryGame.dir/includes_CXX.rsp
 CMakeFiles/MemoryGame.dir/carte.cpp.obj: C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/carte.cpp
 CMakeFiles/MemoryGame.dir/carte.cpp.obj: CMakeFiles/MemoryGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/MemoryGame.dir/carte.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/MemoryGame.dir/carte.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemoryGame.dir/carte.cpp.obj -MF CMakeFiles\MemoryGame.dir\carte.cpp.obj.d -o CMakeFiles\MemoryGame.dir\carte.cpp.obj -c C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\carte.cpp
 
 CMakeFiles/MemoryGame.dir/carte.cpp.i: cmake_force
@@ -154,7 +162,7 @@ CMakeFiles/MemoryGame.dir/plateau.cpp.obj: CMakeFiles/MemoryGame.dir/flags.make
 CMakeFiles/MemoryGame.dir/plateau.cpp.obj: CMakeFiles/MemoryGame.dir/includes_CXX.rsp
 CMakeFiles/MemoryGame.dir/plateau.cpp.obj: C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/plateau.cpp
 CMakeFiles/MemoryGame.dir/plateau.cpp.obj: CMakeFiles/MemoryGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/MemoryGame.dir/plateau.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/MemoryGame.dir/plateau.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemoryGame.dir/plateau.cpp.obj -MF CMakeFiles\MemoryGame.dir\plateau.cpp.obj.d -o CMakeFiles\MemoryGame.dir\plateau.cpp.obj -c C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\plateau.cpp
 
 CMakeFiles/MemoryGame.dir/plateau.cpp.i: cmake_force
@@ -169,7 +177,7 @@ CMakeFiles/MemoryGame.dir/jeu.cpp.obj: CMakeFiles/MemoryGame.dir/flags.make
 CMakeFiles/MemoryGame.dir/jeu.cpp.obj: CMakeFiles/MemoryGame.dir/includes_CXX.rsp
 CMakeFiles/MemoryGame.dir/jeu.cpp.obj: C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/jeu.cpp
 CMakeFiles/MemoryGame.dir/jeu.cpp.obj: CMakeFiles/MemoryGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/MemoryGame.dir/jeu.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/MemoryGame.dir/jeu.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemoryGame.dir/jeu.cpp.obj -MF CMakeFiles\MemoryGame.dir\jeu.cpp.obj.d -o CMakeFiles\MemoryGame.dir\jeu.cpp.obj -c C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\jeu.cpp
 
 CMakeFiles/MemoryGame.dir/jeu.cpp.i: cmake_force
@@ -184,7 +192,7 @@ CMakeFiles/MemoryGame.dir/score.cpp.obj: CMakeFiles/MemoryGame.dir/flags.make
 CMakeFiles/MemoryGame.dir/score.cpp.obj: CMakeFiles/MemoryGame.dir/includes_CXX.rsp
 CMakeFiles/MemoryGame.dir/score.cpp.obj: C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/score.cpp
 CMakeFiles/MemoryGame.dir/score.cpp.obj: CMakeFiles/MemoryGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/MemoryGame.dir/score.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/MemoryGame.dir/score.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemoryGame.dir/score.cpp.obj -MF CMakeFiles\MemoryGame.dir\score.cpp.obj.d -o CMakeFiles\MemoryGame.dir\score.cpp.obj -c C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\score.cpp
 
 CMakeFiles/MemoryGame.dir/score.cpp.i: cmake_force
@@ -199,7 +207,7 @@ CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc
 CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.obj: CMakeFiles/MemoryGame.dir/includes_CXX.rsp
 CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.obj: .qt/rcc/qrc_app_images.cpp
 CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.obj: CMakeFiles/MemoryGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.obj -MF CMakeFiles\MemoryGame.dir\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\.qt\rcc\qrc_app_images.cpp.obj.d -o CMakeFiles\MemoryGame.dir\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\.qt\rcc\qrc_app_images.cpp.obj -c C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\.qt\rcc\qrc_app_images.cpp
 
 CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.i: cmake_force
@@ -210,6 +218,21 @@ CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.s"
 	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\.qt\rcc\qrc_app_images.cpp -o CMakeFiles\MemoryGame.dir\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\.qt\rcc\qrc_app_images.cpp.s
 
+CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.obj: CMakeFiles/MemoryGame.dir/flags.make
+CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.obj: CMakeFiles/MemoryGame.dir/includes_CXX.rsp
+CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.obj: .qt/rcc/qrc_app_sounds.cpp
+CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.obj: CMakeFiles/MemoryGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.obj"
+	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.obj -MF CMakeFiles\MemoryGame.dir\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\.qt\rcc\qrc_app_sounds.cpp.obj.d -o CMakeFiles\MemoryGame.dir\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\.qt\rcc\qrc_app_sounds.cpp.obj -c C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\.qt\rcc\qrc_app_sounds.cpp
+
+CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.i"
+	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\.qt\rcc\qrc_app_sounds.cpp > CMakeFiles\MemoryGame.dir\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\.qt\rcc\qrc_app_sounds.cpp.i
+
+CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.s"
+	C:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\.qt\rcc\qrc_app_sounds.cpp -o CMakeFiles\MemoryGame.dir\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\.qt\rcc\qrc_app_sounds.cpp.s
+
 # Object files for target MemoryGame
 MemoryGame_OBJECTS = \
 "CMakeFiles/MemoryGame.dir/MemoryGame_autogen/mocs_compilation.cpp.obj" \
@@ -219,7 +242,8 @@ MemoryGame_OBJECTS = \
 "CMakeFiles/MemoryGame.dir/plateau.cpp.obj" \
 "CMakeFiles/MemoryGame.dir/jeu.cpp.obj" \
 "CMakeFiles/MemoryGame.dir/score.cpp.obj" \
-"CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.obj"
+"CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.obj" \
+"CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.obj"
 
 # External object files for target MemoryGame
 MemoryGame_EXTERNAL_OBJECTS =
@@ -232,16 +256,19 @@ MemoryGame.exe: CMakeFiles/MemoryGame.dir/plateau.cpp.obj
 MemoryGame.exe: CMakeFiles/MemoryGame.dir/jeu.cpp.obj
 MemoryGame.exe: CMakeFiles/MemoryGame.dir/score.cpp.obj
 MemoryGame.exe: CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.obj
+MemoryGame.exe: CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.obj
 MemoryGame.exe: CMakeFiles/MemoryGame.dir/build.make
 MemoryGame.exe: C:/Qt/6.12.0/mingw_64/lib/libQt6Widgets.a
+MemoryGame.exe: C:/Qt/6.12.0/mingw_64/lib/libQt6Multimedia.a
 MemoryGame.exe: C:/Qt/6.12.0/mingw_64/lib/libQt6Gui.a
+MemoryGame.exe: C:/Qt/6.12.0/mingw_64/lib/libQt6Network.a
 MemoryGame.exe: C:/Qt/6.12.0/mingw_64/lib/libQt6Core.a
 MemoryGame.exe: C:/Qt/6.12.0/mingw_64/lib/libQt6EntryPoint.a
 MemoryGame.exe: MemoryGame.exe.manifest
 MemoryGame.exe: CMakeFiles/MemoryGame.dir/linkLibs.rsp
 MemoryGame.exe: CMakeFiles/MemoryGame.dir/objects1.rsp
 MemoryGame.exe: CMakeFiles/MemoryGame.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable MemoryGame.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable MemoryGame.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\MemoryGame.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -253,6 +280,7 @@ CMakeFiles/MemoryGame.dir/clean:
 .PHONY : CMakeFiles/MemoryGame.dir/clean
 
 CMakeFiles/MemoryGame.dir/depend: .qt/rcc/qrc_app_images.cpp
+CMakeFiles/MemoryGame.dir/depend: .qt/rcc/qrc_app_sounds.cpp
 CMakeFiles/MemoryGame.dir/depend: MemoryGame_autogen/timestamp
 	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug C:\Users\DELL\Desktop\prog\Cpp\Projet\MemoryGame\build\Desktop_Qt_6_12_0_MinGW_64_bit_Debug\CMakeFiles\MemoryGame.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/MemoryGame.dir/depend

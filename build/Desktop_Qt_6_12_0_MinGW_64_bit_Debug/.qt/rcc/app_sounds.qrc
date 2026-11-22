@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="sounds/flip.wav">C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/sounds/flip.wav</file>
+    <file alias="sounds/match.wav">C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/sounds/match.wav</file>
+    <file alias="sounds/win-record.wav">C:/Users/DELL/Desktop/prog/Cpp/Projet/MemoryGame/sounds/win-record.wav</file>
+  </qresource>
+</RCC>
+

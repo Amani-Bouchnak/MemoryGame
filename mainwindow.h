@@ -12,7 +12,12 @@
 #include <QTimer>
 #include <QPropertyAnimation>
 #include <QGraphicsOpacityEffect>
+#include <QGraphicsDropShadowEffect>
 #include <vector>
+#include <QSoundEffect>
+#include <QMediaPlayer>
+#include <QAudioOutput>
+#include <QMap>
 #include "jeu.h"
 #include "score.h"
 
@@ -78,6 +83,25 @@ private:
     //Theme : Mode Sombre (true)/ Mode clair (false)
     bool modeSombre;
     QPushButton *btnThemeToggle;
+
+    // animation de victoire !
+    void jouerEffetVictoire(bool nouveauRecord);
+
+    // Effets sonores
+    struct EffetAudio {
+        QMediaPlayer *player = nullptr;
+        QAudioOutput *output = nullptr;
+    };
+
+    void initialiserSons();
+    void jouerSon(const QString &cle);
+
+    bool sonActif = true;
+    QMap<QString, EffetAudio> effetsAudio;
+
+    QPushButton *btnSonToggle = nullptr;
+    void basculerSon();
+    void mettreAJourBoutonSon();
 
 };
 

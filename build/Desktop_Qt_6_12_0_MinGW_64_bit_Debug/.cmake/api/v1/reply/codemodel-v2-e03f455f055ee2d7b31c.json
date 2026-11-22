@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Release-253ef9f6da385a5fe0a9.json",
+					"jsonFile" : "directory-.-Release-5f80990e407ff64335a7.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "MemoryGame::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-MemoryGame-Release-9de561b556431c01e373.json",
+					"jsonFile" : "target-MemoryGame-Release-9ad66f716a86b8c876c2.json",
 					"name" : "MemoryGame",
 					"projectIndex" : 0
 				},

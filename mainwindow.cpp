@@ -9,6 +9,10 @@
 #include <QTextBrowser>
 #include <QApplication>
 #include <QSettings>
+#include <QUrl>
+#include <QDebug>
+#include <QMediaPlayer>
+#include <QAudioOutput>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -41,6 +45,8 @@ MainWindow::MainWindow(QWidget *parent)
     chronoTimer = new QTimer(this);
     connect(chronoTimer, &QTimer::timeout, this, &MainWindow::updateChrono);
 
+    initialiserSons();
+
     applyStylesheet();
 }
 
@@ -65,7 +71,16 @@ void MainWindow::setupPageAccueil()
     btnThemeToggle->setFixedSize(40, 40);
     btnThemeToggle->setToolTip("Changer de thème (Sombre / Clair)");
 
+    btnSonToggle = new QPushButton(pageAccueil);
+    btnSonToggle->setObjectName("btnSonToggle");
+    btnSonToggle->setCursor(Qt::PointingHandCursor);
+    btnSonToggle->setFocusPolicy(Qt::NoFocus);
+    btnSonToggle->setFixedSize(40, 40);
+    btnSonToggle->setToolTip("Activer / Couper le son");
+
     topBarAccueil->addStretch();
+    topBarAccueil->addWidget(btnSonToggle);
+    topBarAccueil->addSpacing(10);
     topBarAccueil->addWidget(btnThemeToggle);
     topBarAccueil->addSpacing(10);
     topBarAccueil->addWidget(btnResetScores);
@@ -117,6 +132,7 @@ void MainWindow::setupPageAccueil()
         settings.setValue("modeSombre", modeSombre);
         applyStylesheet();
     });
+    connect(btnSonToggle, &QPushButton::clicked, this, &MainWindow::basculerSon);
 
     mainLayout->addWidget(titre, 0, Qt::AlignCenter);
     mainLayout->addSpacing(10);
@@ -192,6 +208,8 @@ void MainWindow::setupPageJeu()
     mainLayout->addLayout(topBar);
     mainLayout->addWidget(gridContainer, 1);
 
+    gridContainer->setObjectName("gridContainer");
+
     connect(btnAccueil, &QPushButton::clicked, this, &MainWindow::retourAccueil);
     connect(btnRejouer, &QPushButton::clicked, this, &MainWindow::lancerPartie);
 }
@@ -218,6 +236,7 @@ void MainWindow::lancerPartie()
         afficherConditionsUtilisation(true);
         return;
     }
+    jouerSon("flip");
     int dim = comboDimension->currentData().toInt();
     jeu.demarrerNouvellePartie(dim);
 
@@ -244,6 +263,7 @@ void MainWindow::lancerPartie()
 
 void MainWindow::retourAccueil()
 {
+    jouerSon("flip");
     chronoTimer->stop();
     mettreAJourLabelRecordAccueil();
     stackedWidget->setCurrentIndex(0);
@@ -302,6 +322,7 @@ void MainWindow::onCarteClicked(int index)
     if (verrouClic) return;
 
     if (jeu.retournerCarte(index)) {
+        jouerSon("flip");
         animerCarte(boutonsCartes[index]);
         mettreAJourAffichage();
 
@@ -311,27 +332,38 @@ void MainWindow::onCarteClicked(int index)
 
                 if (jeu.estPartieTerminee()) {
                     chronoTimer->stop();
+                    verrouClic = true;
 
                     int dim = comboDimension->currentData().toInt();
                     int coupsFait = jeu.getCoups();
                     int tempsFait = secondes;
 
-                    // Enregistrement du score
                     bool nouveauRecord = gestionnaireScores.enregistrerScore(dim, coupsFait, tempsFait);
 
-                    // Mise à jour immédiate du label de score dans la partie
                     Record r = gestionnaireScores.getRecord(dim);
-                    labelMeilleurScore->setText(QString("Record : %1 coups (%2s)").arg(r.coups).arg(r.secondes));
+                    int minR = r.secondes / 60;
+                    int secR = r.secondes % 60;
+                    QString recordStr = QString("%1 coups (%2:%3)")
+                                            .arg(r.coups)
+                                            .arg(minR, 2, 10, QChar('0'))
+                                            .arg(secR, 2, 10, QChar('0'));
 
-                    QTimer::singleShot(300, this, [this, nouveauRecord, coupsFait]() {
-                        QString msg = QString("Félicitations ! Plateau terminé en %1 coups (%2) !")
-                                          .arg(coupsFait)
-                                          .arg(labelChrono->text().mid(8));
-                        if (nouveauRecord) {
-                            msg += "\n\n🏆 Nouveau Record Établi !";
-                        }
-                        QMessageBox::information(this, "Victoire !", msg);
+                    if (nouveauRecord) {
+                        labelMeilleurScore->setText(QString("★ NOUVEAU RECORD : %1").arg(recordStr));
+                    } else {
+                        labelMeilleurScore->setText(QString("Record : %1").arg(recordStr));
+                    }
+
+                    jouerSon(nouveauRecord ? "record" : "win");
+
+                    int dureeFlash = nouveauRecord ? 1100 : 750;
+                    jouerEffetVictoire(nouveauRecord);
+
+                    QTimer::singleShot(dureeFlash, this, [this]() {
+                        verrouClic = false;
                     });
+                } else {
+                    jouerSon("match");
                 }
             } else {
                 verrouClic = true;
@@ -512,6 +544,32 @@ void MainWindow::applyStylesheet()
                 font-weight: bold;
                 color: #14532D;
             }
+            QPushButton[etat="victoire"] {
+                background-color: #BBF7D0;
+                border: 3px solid #4ADE80;
+                border-radius: 14px;
+                font-size: 32px;
+                font-weight: bold;
+                color: #052E16;
+            }
+            QPushButton[etat="record"] {
+                background-color: #FEF08A;
+                border: 3px solid #FBBF24;
+                border-radius: 14px;
+                font-size: 32px;
+                font-weight: bold;
+                color: #422006;
+            }
+            #btnSonToggle {
+                background-color: #1E293B;
+                color: #38BDF8;
+                border: 1px solid #334155;
+                border-radius: 20px;
+                font-size: 18px;
+            }
+            #btnSonToggle:hover {
+                background-color: #334155;
+            }
         )");
     } else {
         setStyleSheet(R"(
@@ -627,6 +685,32 @@ void MainWindow::applyStylesheet()
                 font-weight: bold;
                 color: #14532D;
             }
+            QPushButton[etat="victoire"] {
+                background-color: #86EFAC;
+                border: 3px solid #15803D;
+                border-radius: 14px;
+                font-size: 32px;
+                font-weight: bold;
+                color: #052E16;
+            }
+            QPushButton[etat="record"] {
+                background-color: #FDE047;
+                border: 3px solid #CA8A04;
+                border-radius: 14px;
+                font-size: 32px;
+                font-weight: bold;
+                color: #422006;
+            }
+            #btnSonToggle {
+                background-color: #FFFFFF;
+                color: #0284C7;
+                border: 1px solid #CBD5E1;
+                border-radius: 20px;
+                font-size: 18px;
+            }
+            #btnSonToggle:hover {
+                background-color: #E2E8F0;
+            }
         )");
     }
 }
@@ -722,5 +806,118 @@ void MainWindow::afficherConditionsUtilisation(bool lancerApresAcceptation)
 
     if (accepteMaintenant && lancerApresAcceptation) {
         lancerPartie();
+    }
+}
+void MainWindow::jouerEffetVictoire(bool nouveauRecord)
+{
+    QString etatFlash = nouveauRecord ? "record" : "victoire";
+
+    // Applique l'état lumineux sur toutes les cartes d'un coup
+    for (QPushButton *btn : boutonsCartes) {
+        if (!btn) continue;
+        btn->setProperty("etat", etatFlash);
+        btn->style()->unpolish(btn);
+        btn->style()->polish(btn);
+        btn->update();
+    }
+
+    int dureeFlash = nouveauRecord ? 1100 : 750;
+
+    // Deuxième impulsion rapide uniquement pour un nouveau record
+    if (nouveauRecord) {
+        QTimer::singleShot(350, this, [this]() {
+            for (QPushButton *btn : boutonsCartes) {
+                if (!btn) continue;
+                btn->setProperty("etat", "trouvee");
+                btn->style()->unpolish(btn);
+                btn->style()->polish(btn);
+            }
+        });
+
+        QTimer::singleShot(550, this, [this]() {
+            for (QPushButton *btn : boutonsCartes) {
+                if (!btn) continue;
+                btn->setProperty("etat", "record");
+                btn->style()->unpolish(btn);
+                btn->style()->polish(btn);
+            }
+        });
+    }
+
+    // Retour propre à l'état "trouvee"
+    QTimer::singleShot(dureeFlash, this, [this]() {
+        for (QPushButton *btn : boutonsCartes) {
+            if (!btn) continue;
+            btn->setProperty("etat", "trouvee");
+            btn->style()->unpolish(btn);
+            btn->style()->polish(btn);
+            btn->update();
+        }
+        if (gridContainer) {
+            gridContainer->update();
+        }
+    });
+}
+void MainWindow::initialiserSons()
+{
+    QSettings settings("MemoryGame", "MemoryGame");
+    sonActif = settings.value("audio/sonActif", true).toBool();
+    mettreAJourBoutonSon();
+
+    struct SonConfig {
+        QString cle;
+        QString ressource;
+        float volume;
+    };
+
+    const QList<SonConfig> configs = {
+        {"flip",   "qrc:/sounds/flip.wav",       0.45f},
+        {"match",  "qrc:/sounds/match.wav",      0.65f},
+        {"win",    "qrc:/sounds/win-record.wav", 0.80f},
+        {"record", "qrc:/sounds/win-record.wav", 0.90f}
+    };
+
+    for (const auto &cfg : configs) {
+        QMediaPlayer *player = new QMediaPlayer(this);
+        QAudioOutput *output = new QAudioOutput(this);
+        output->setVolume(cfg.volume);
+        player->setAudioOutput(output);
+        player->setSource(QUrl(cfg.ressource));
+
+        effetsAudio.insert(cfg.cle, {player, output});
+    }
+}
+
+void MainWindow::jouerSon(const QString &cle)
+{
+    if (!sonActif) return;
+
+    if (!effetsAudio.contains(cle)) return;
+
+    QMediaPlayer *player = effetsAudio[cle].player;
+    if (!player) return;
+
+    player->stop();
+    player->setPosition(0);
+    player->play();
+}
+void MainWindow::mettreAJourBoutonSon()
+{
+    if (!btnSonToggle) return;
+    btnSonToggle->setText(sonActif ? "🔊" : "🔇");
+}
+
+void MainWindow::basculerSon()
+{
+    sonActif = !sonActif;
+
+    QSettings settings("MemoryGame", "MemoryGame");
+    settings.setValue("audio/sonActif", sonActif);
+    settings.sync();
+
+    mettreAJourBoutonSon();
+
+    if (sonActif) {
+        jouerSon("flip");
     }
 }

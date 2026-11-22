@@ -247,6 +247,30 @@ build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\MemoryGame.dir\build.make CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.s
 .PHONY : build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.cpp.s
 
+build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.obj: build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.obj
+.PHONY : build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.obj
+
+# target to build an object file
+build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MemoryGame.dir\build.make CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.obj
+.PHONY : build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.obj
+
+build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.i: build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.i
+.PHONY : build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.i
+
+# target to preprocess a source file
+build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MemoryGame.dir\build.make CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.i
+.PHONY : build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.i
+
+build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.s: build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.s
+.PHONY : build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.s
+
+# target to generate assembly for a file
+build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\MemoryGame.dir\build.make CMakeFiles/MemoryGame.dir/build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.s
+.PHONY : build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.cpp.s
+
 carte.obj: carte.cpp.obj
 .PHONY : carte.obj
 
@@ -412,6 +436,9 @@ help:
 	@echo ... build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.obj
 	@echo ... build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.i
 	@echo ... build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_images.s
+	@echo ... build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.obj
+	@echo ... build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.i
+	@echo ... build/Desktop_Qt_6_12_0_MinGW_64_bit_Debug/.qt/rcc/qrc_app_sounds.s
 	@echo ... carte.obj
 	@echo ... carte.i
 	@echo ... carte.s

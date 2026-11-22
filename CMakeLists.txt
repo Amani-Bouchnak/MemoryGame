@@ -9,8 +9,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Multimedia)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Multimedia)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -44,6 +44,13 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             images/9.png
             images/10.png
     )
+qt_add_resources(MemoryGame "app_sounds"
+        PREFIX "/"
+        FILES
+            sounds/flip.wav
+            sounds/match.wav
+            sounds/win-record.wav
+    )
 else()
     if(ANDROID)
         add_library(MemoryGame SHARED
@@ -56,7 +63,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(MemoryGame PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(MemoryGame PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia)
 
 if(${QT_VERSION} VERSION_LESS 6.1.0)
   set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.MemoryGame)
