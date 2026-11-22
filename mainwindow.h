@@ -112,6 +112,10 @@ private:
     void afficherConfirmationReset();
     void confirmerResetScores();
 
+    // Bouton infos
+    QPushButton *btnInfos = nullptr;
+    void afficherInfosJeu();
+
 };
 
 #endif // MAINWINDOW_H

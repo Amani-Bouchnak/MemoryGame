@@ -59,7 +59,15 @@ void MainWindow::setupPageAccueil()
     QVBoxLayout *mainLayout = new QVBoxLayout(pageAccueil);
     mainLayout->setContentsMargins(25, 20, 25, 20);
 
-    // Barre supérieure pour l'accueil (bouton thème + bouton reset en haut à droite)
+    // Barre supérieure pour l'accueil
+
+    btnInfos = new QPushButton("?", pageAccueil);
+    btnInfos->setObjectName("btnInfos");
+    btnInfos->setCursor(Qt::PointingHandCursor);
+    btnInfos->setFocusPolicy(Qt::NoFocus);
+    btnInfos->setFixedSize(40, 40);
+    btnInfos->setToolTip("À propos du jeu et du développeur");
+
     QHBoxLayout *topBarAccueil = new QHBoxLayout();
     btnResetScores = new QPushButton("Réinitialiser les scores", pageAccueil);
     btnResetScores->setObjectName("btnAction");
@@ -79,6 +87,7 @@ void MainWindow::setupPageAccueil()
     btnSonToggle->setFixedSize(40, 40);
     btnSonToggle->setToolTip("Activer / Couper le son");
 
+    topBarAccueil->addWidget(btnInfos);
     topBarAccueil->addStretch();
     topBarAccueil->addWidget(btnSonToggle);
     topBarAccueil->addSpacing(10);
@@ -130,6 +139,7 @@ void MainWindow::setupPageAccueil()
         applyStylesheet();
     });
     connect(btnSonToggle, &QPushButton::clicked, this, &MainWindow::basculerSon);
+    connect(btnInfos, &QPushButton::clicked, this, &MainWindow::afficherInfosJeu);
 
     mainLayout->addWidget(titre, 0, Qt::AlignCenter);
     mainLayout->addSpacing(10);
@@ -592,6 +602,55 @@ void MainWindow::applyStylesheet()
             #btnConfirmerReset:hover {
                 background-color: #DC2626;
             }
+            /* Bouton d'information rond avec contour */
+            QPushButton#btnInfos {
+                background-color: transparent;
+                color: #E2E8F0;
+                border: 2px solid #475569;
+                border-radius: 20px;
+                font-size: 17px;
+                font-weight: bold;
+                padding: 0px;
+            }
+            QPushButton#btnInfos:hover {
+                background-color: #1E293B;
+                border-color: #38BDF8;
+                color: #38BDF8;
+            }
+
+            /* Fenêtre À propos */
+            QDialog#infoDialog {
+                background-color: #18202C;
+                border: 1px solid #2D3A4E;
+                border-radius: 12px;
+            }
+            QLabel#titreInfo {
+                font-size: 18px;
+                font-weight: bold;
+                color: #FFFFFF;
+                background: transparent;
+            }
+            QLabel#descInfo {
+                font-size: 13px;
+                color: #CBD5E1;
+                background: transparent;
+            }
+            QLabel#devInfo {
+                font-size: 13px;
+                color: #E2E8F0;
+                background: transparent;
+            }
+            QPushButton#btnFermerInfo {
+                background-color: #0284C7;
+                color: #FFFFFF;
+                border: none;
+                border-radius: 8px;
+                padding: 8px 18px;
+                font-weight: bold;
+            }
+            QPushButton#btnFermerInfo:hover {
+                background-color: #0369A1;
+            }
         )");
     } else {
         setStyleSheet(R"(
@@ -758,6 +817,55 @@ void MainWindow::applyStylesheet()
             #btnConfirmerReset:hover {
                 background-color: #DC2626;
             }
+            /* Bouton d'information rond avec contour */
+            QPushButton#btnInfos {
+                background-color: transparent;
+                color: #1E293B;
+                border: 2px solid #94A3B8;
+                border-radius: 20px;
+                font-size: 17px;
+                font-weight: bold;
+                padding: 0px;
+            }
+            QPushButton#btnInfos:hover {
+                background-color: #E2E8F0;
+                border-color: #0284C7;
+                color: #0284C7;
+            }
+
+            /* Fenêtre À propos */
+            QDialog#infoDialog {
+                background-color: #FFFFFF;
+                border: 1px solid #CBD5E1;
+                border-radius: 12px;
+            }
+            QLabel#titreInfo {
+                font-size: 18px;
+                font-weight: bold;
+                color: #0F172A;
+                background: transparent;
+            }
+            QLabel#descInfo {
+                font-size: 13px;
+                color: #475569;
+                background: transparent;
+            }
+            QLabel#devInfo {
+                font-size: 13px;
+                color: #1E293B;
+                background: transparent;
+            }
+            QPushButton#btnFermerInfo {
+                background-color: #0284C7;
+                color: #FFFFFF;
+                border: none;
+                border-radius: 8px;
+                padding: 8px 18px;
+                font-weight: bold;
+            }
+            QPushButton#btnFermerInfo:hover {
+                background-color: #0369A1;
+            }
         )");
     }
 }
@@ -780,11 +888,18 @@ void MainWindow::afficherConditionsUtilisation(bool lancerApresAcceptation)
     QTextBrowser *texte = new QTextBrowser(&dialog);
     texte->setOpenExternalLinks(false);
     texte->setHtml(
-        "<p>Bienvenue dans <b>Memory Game</b>.</p>"
-        "<p>En acceptant ces conditions d'utilisation, vous acceptez de jouer normalement et "
-        "vous êtes informé que vos meilleurs scores (nombre de coups et temps par taille de grille) "
-        "sont enregistrés localement dans <code>scores.txt</code>.</p>"
-        "<p>Aucune donnée personnelle n'est collectée ni envoyée vers l'extérieur.</p>"
+        "<p>Bienvenue dans <b>Memory Game</b> — Édition Desktop.</p>"
+        "<p><b>1. Utilisation du jeu :</b> En acceptant ces conditions d'utilisation, vous vous engagez "
+        "à utiliser l'application dans le cadre d'un usage normal et personnel de divertissement.</p>"
+        "<p><b>2. Sauvegarde locale des scores et préférences :</b> Vos meilleurs scores "
+        "(nombre de coups et temps réalisé selon la taille de la grille) ainsi que vos préférences "
+        "d'interface (thème sombre ou clair, état du son et acceptation des conditions) sont enregistrés "
+        "localement sur votre appareil (notamment via <code>scores.txt</code> et les paramètres locaux). "
+        "Vous pouvez réinitialiser vos records à tout moment depuis l'écran d'accueil.</p>"
+        "<p><b>3. Confidentialité :</b> Aucune donnée personnelle ni statistique de jeu n'est "
+        "collectée, transmise ou partagée avec un serveur externe.</p>"
+        "<p><b>4. Audio et affichage :</b> L'application propose des effets sonores et un basculement "
+        "entre mode sombre et mode clair ; vous pouvez couper le son ou changer de thème à tout moment.</p>"
         );
     texte->setStyleSheet(modeSombre
                              ? "background-color: #1E293B; color: #F1F5F9; border: 1px solid #334155; "
@@ -1121,4 +1236,71 @@ void MainWindow::confirmerResetScores()
 
     gestionnaireScores.reinitialiser();
     mettreAJourLabelRecordAccueil();
+}
+void MainWindow::afficherInfosJeu()
+{
+    jouerSon("flip");
+
+    QDialog dlg(this);
+    dlg.setWindowTitle("À propos — Memory Game");
+    dlg.setModal(true);
+    dlg.setFixedWidth(480);
+    dlg.setObjectName("infoDialog");
+
+    QVBoxLayout *layout = new QVBoxLayout(&dlg);
+    layout->setContentsMargins(26, 24, 26, 24);
+    layout->setSpacing(14);
+
+    QLabel *titre = new QLabel("Memory Game — Édition Desktop", &dlg);
+    titre->setObjectName("titreInfo");
+
+    QLabel *descJeu = new QLabel(
+        "Conçu et développé en C++ avec le framework Qt, ce jeu de mémoire met à l'épreuve "
+        "votre concentration et votre rapidité d'observation à travers plusieurs niveaux de difficulté "
+        "(de 4 à 16 cartes).\n\n"
+        "L'application intègre un suivi précis des performances (chronomètre et compteur de coups), "
+        "une sauvegarde persistante des meilleurs records par dimension, des animations fluides, "
+        "un retour sonore interactif ainsi qu'une interface adaptative en mode sombre et clair.",
+        &dlg
+        );
+    descJeu->setObjectName("descInfo");
+    descJeu->setWordWrap(true);
+
+    QString couleurLien = modeSombre ? "#38BDF8" : "#0284C7";
+    QLabel *devInfo = new QLabel(
+        QString(
+            "<b>Développeuse :</b> Amani Bouchnak<br>"
+            "<b>Formation :</b> Cycle Préparatoire Intégré en Informatique (ISIMM)<br>"
+            "<b>Technologies :</b> C++, Qt Widgets, QSettings, QMediaPlayer<br><br>"
+            "<b>LinkedIn :</b> <a href=\"https://www.linkedin.com/in/amani-bouchnak-90aaa5374/\" "
+            "style=\"color: %1; text-decoration: none;\">linkedin.com/in/amani-bouchnak</a><br>"
+            "<b>Contact :</b> <a href=\"mailto:amanibouchnak69@gmail.com\" "
+            "style=\"color: %1; text-decoration: none;\">amanibouchnak69@gmail.com</a>"
+            ).arg(couleurLien),
+        &dlg
+        );
+    devInfo->setObjectName("devInfo");
+    devInfo->setTextFormat(Qt::RichText);
+    devInfo->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    devInfo->setOpenExternalLinks(true);
+    devInfo->setWordWrap(true);
+
+    QHBoxLayout *basLayout = new QHBoxLayout();
+    basLayout->addStretch();
+
+    QPushButton *btnFermer = new QPushButton("Fermer", &dlg);
+    btnFermer->setObjectName("btnFermerInfo");
+    btnFermer->setCursor(Qt::PointingHandCursor);
+    basLayout->addWidget(btnFermer);
+
+    layout->addWidget(titre);
+    layout->addWidget(descJeu);
+    layout->addSpacing(4);
+    layout->addWidget(devInfo);
+    layout->addSpacing(8);
+    layout->addLayout(basLayout);
+
+    connect(btnFermer, &QPushButton::clicked, &dlg, &QDialog::accept);
+
+    dlg.exec();
 }
