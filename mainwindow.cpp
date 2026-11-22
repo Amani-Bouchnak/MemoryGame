@@ -41,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     stackedWidget->addWidget(pageAccueil); // Index 0 : Accueil
     stackedWidget->addWidget(pageJeu);     // Index 1 : Jeu
+    stackedWidget->setCurrentIndex(0);
 
     chronoTimer = new QTimer(this);
     connect(chronoTimer, &QTimer::timeout, this, &MainWindow::updateChrono);
@@ -121,11 +122,7 @@ void MainWindow::setupPageAccueil()
     connect(comboDimension, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this](int){
         mettreAJourLabelRecordAccueil();
     });
-    connect(btnResetScores, &QPushButton::clicked, this, [this]() {
-        gestionnaireScores.reinitialiser();
-        mettreAJourLabelRecordAccueil();
-        QMessageBox::information(this, "Réinitialisation", "Tous les scores ont été effacés !");
-    });
+    connect(btnResetScores, &QPushButton::clicked, this, &MainWindow::afficherConfirmationReset);
     connect(btnThemeToggle, &QPushButton::clicked, this, [this]() {
         modeSombre = !modeSombre;
         QSettings settings("MemoryGame", "MemoryGame");
@@ -570,6 +567,31 @@ void MainWindow::applyStylesheet()
             #btnSonToggle:hover {
                 background-color: #334155;
             }
+            #confirmCard {
+                background-color: #1E293B;
+                border: 1px solid #334155;
+                border-radius: 16px;
+            }
+            #btnAnnulerReset {
+                background-color: #334155;
+                color: #F8FAFC;
+                border-radius: 8px;
+                font-weight: bold;
+                padding: 0 16px;
+            }
+            #btnAnnulerReset:hover {
+                background-color: #475569;
+            }
+            #btnConfirmerReset {
+                background-color: #EF4444;
+                color: #FFFFFF;
+                border-radius: 8px;
+                font-weight: bold;
+                padding: 0 16px;
+            }
+            #btnConfirmerReset:hover {
+                background-color: #DC2626;
+            }
         )");
     } else {
         setStyleSheet(R"(
@@ -710,6 +732,31 @@ void MainWindow::applyStylesheet()
             }
             #btnSonToggle:hover {
                 background-color: #E2E8F0;
+            }
+            #confirmCard {
+                background-color: #FFFFFF;
+                border: 1px solid #CBD5E1;
+                border-radius: 16px;
+            }
+            #btnAnnulerReset {
+                background-color: #E2E8F0;
+                color: #0F172A;
+                border-radius: 8px;
+                font-weight: bold;
+                padding: 0 16px;
+            }
+            #btnAnnulerReset:hover {
+                background-color: #CBD5E1;
+            }
+            #btnConfirmerReset {
+                background-color: #EF4444;
+                color: #FFFFFF;
+                border-radius: 8px;
+                font-weight: bold;
+                padding: 0 16px;
+            }
+            #btnConfirmerReset:hover {
+                background-color: #DC2626;
             }
         )");
     }
@@ -920,4 +967,158 @@ void MainWindow::basculerSon()
     if (sonActif) {
         jouerSon("flip");
     }
+}
+void MainWindow::setupPageConfirmReset()
+{
+    pageConfirmReset = new QWidget(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout(pageConfirmReset);
+    mainLayout->setAlignment(Qt::AlignCenter);
+
+    QFrame *card = new QFrame(pageConfirmReset);
+    card->setObjectName("confirmCard");
+    card->setFixedWidth(420);
+
+    QVBoxLayout *cardLayout = new QVBoxLayout(card);
+    cardLayout->setSpacing(18);
+    cardLayout->setContentsMargins(28, 28, 28, 28);
+
+    QLabel *iconLabel = new QLabel("⚠️", card);
+    iconLabel->setAlignment(Qt::AlignCenter);
+    iconLabel->setStyleSheet("font-size: 38px;");
+
+    QLabel *titreLabel = new QLabel("Réinitialiser les scores ?", card);
+    titreLabel->setObjectName("titreConfirm");
+    titreLabel->setAlignment(Qt::AlignCenter);
+    titreLabel->setStyleSheet("font-size: 20px; font-weight: bold;");
+
+    QLabel *descLabel = new QLabel(
+        "Cette action supprimera définitivement tous vos meilleurs records "
+        "et statistiques enregistrés. Voulez-vous continuer ?",
+        card
+        );
+    descLabel->setWordWrap(true);
+    descLabel->setAlignment(Qt::AlignCenter);
+
+    QHBoxLayout *btnLayout = new QHBoxLayout();
+    btnLayout->setSpacing(12);
+
+    btnAnnulerReset = new QPushButton("Annuler", card);
+    btnAnnulerReset->setObjectName("btnAnnulerReset");
+    btnAnnulerReset->setCursor(Qt::PointingHandCursor);
+    btnAnnulerReset->setFixedHeight(40);
+
+    btnConfirmerReset = new QPushButton("Oui, réinitialiser", card);
+    btnConfirmerReset->setObjectName("btnConfirmerReset");
+    btnConfirmerReset->setCursor(Qt::PointingHandCursor);
+    btnConfirmerReset->setFixedHeight(40);
+
+    btnLayout->addWidget(btnAnnulerReset);
+    btnLayout->addWidget(btnConfirmerReset);
+
+    cardLayout->addWidget(iconLabel);
+    cardLayout->addWidget(titreLabel);
+    cardLayout->addWidget(descLabel);
+    cardLayout->addSpacing(8);
+    cardLayout->addLayout(btnLayout);
+
+    mainLayout->addWidget(card);
+
+    connect(btnAnnulerReset, &QPushButton::clicked, this, [this]() {
+        jouerSon("flip");
+        stackedWidget->setCurrentIndex(0);
+    });
+
+    connect(btnConfirmerReset, &QPushButton::clicked, this, &MainWindow::confirmerResetScores);
+}
+void MainWindow::afficherConfirmationReset()
+{
+    jouerSon("flip");
+
+    QDialog dlg(this);
+    dlg.setWindowTitle("Réinitialiser les scores");
+    dlg.setModal(true);
+    dlg.setFixedWidth(370);
+
+    dlg.setStyleSheet(R"(
+        QDialog {
+            background-color: #18202C;
+            border: 1px solid #2D3A4E;
+            border-radius: 12px;
+        }
+        QLabel {
+            color: #F1F5F9;
+            background: transparent;
+        }
+        QPushButton#btnAnnuler {
+            background-color: #283548;
+            color: #E2E8F0;
+            border: 1px solid #3B4D66;
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-weight: bold;
+        }
+        QPushButton#btnAnnuler:hover {
+            background-color: #33445C;
+        }
+        QPushButton#btnConfirmer {
+            background-color: #DC2626;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-weight: bold;
+        }
+        QPushButton#btnConfirmer:hover {
+            background-color: #B91C1C;
+        }
+    )");
+
+    QVBoxLayout *layout = new QVBoxLayout(&dlg);
+    layout->setContentsMargins(20, 18, 20, 18);
+    layout->setSpacing(12);
+
+    QLabel *titre = new QLabel("Réinitialiser les scores ?", &dlg);
+    titre->setStyleSheet("font-size: 16px; font-weight: bold;");
+
+    QLabel *message = new QLabel(
+        "Tous les meilleurs scores enregistrés seront effacés.",
+        &dlg
+        );
+    message->setWordWrap(true);
+    message->setStyleSheet("font-size: 13px; color: #CBD5E1;");
+
+    QHBoxLayout *boutons = new QHBoxLayout();
+    boutons->setSpacing(10);
+    boutons->addStretch();
+
+    QPushButton *btnAnnuler = new QPushButton("Annuler", &dlg);
+    btnAnnuler->setObjectName("btnAnnuler");
+    btnAnnuler->setCursor(Qt::PointingHandCursor);
+
+    QPushButton *btnConfirmer = new QPushButton("Oui, réinitialiser", &dlg);
+    btnConfirmer->setObjectName("btnConfirmer");
+    btnConfirmer->setCursor(Qt::PointingHandCursor);
+
+    boutons->addWidget(btnAnnuler);
+    boutons->addWidget(btnConfirmer);
+
+    layout->addWidget(titre);
+    layout->addWidget(message);
+    layout->addSpacing(4);
+    layout->addLayout(boutons);
+
+    connect(btnAnnuler, &QPushButton::clicked, &dlg, &QDialog::reject);
+    connect(btnConfirmer, &QPushButton::clicked, &dlg, &QDialog::accept);
+
+    if (dlg.exec() == QDialog::Accepted) {
+        confirmerResetScores();
+    }
+}
+
+void MainWindow::confirmerResetScores()
+{
+    jouerSon("flip");
+
+    gestionnaireScores.reinitialiser();
+    mettreAJourLabelRecordAccueil();
 }

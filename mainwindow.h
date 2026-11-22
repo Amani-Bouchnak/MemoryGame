@@ -103,6 +103,15 @@ private:
     void basculerSon();
     void mettreAJourBoutonSon();
 
+    // Page de confirmation de réinitialisation des scores
+    QWidget *pageConfirmReset = nullptr;
+    QPushButton *btnConfirmerReset = nullptr;
+    QPushButton *btnAnnulerReset = nullptr;
+
+    void setupPageConfirmReset();
+    void afficherConfirmationReset();
+    void confirmerResetScores();
+
 };
 
 #endif // MAINWINDOW_H
